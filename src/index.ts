@@ -9,7 +9,7 @@ export class MyMCP extends McpAgent {
     name: 'remote-mcp',
     description:
       'My remote MCP server with OAuth, SSE running on Cloudflare exposing custom tools',
-    version: '1.0.0',
+    version: '1.0.1',
   });
 
   async init() {
