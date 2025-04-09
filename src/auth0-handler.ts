@@ -21,6 +21,7 @@ import type {
 } from '@cloudflare/workers-oauth-provider';
 import { Hono } from 'hono';
 import type { Context } from 'hono';
+import { layout, homeContent } from './utils';
 
 /**
  * Environment variables required for Auth0 OAuth configuration
@@ -176,6 +177,21 @@ const errorHandler = async (err: unknown, c: Context) => {
 const auth0App = new Hono<{
   Bindings: Env & { OAUTH_PROVIDER: OAuthHelpers };
 }>();
+
+/**
+ * Homepage endpoint
+ * Renders a basic homepage placeholder
+ *
+ * @route GET /
+ */
+auth0App.get('/', async (c) => {
+  try {
+    const content = await homeContent(c.req.raw);
+    return c.html(layout(content, 'MCP Remote Auth Demo - Home'));
+  } catch (err: unknown) {
+    return errorHandler(err, c);
+  }
+});
 
 /**
  * Authorization endpoint
