@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "deploy": {
+      "cache": true
+    },
+    "dev": {
+      "cache": true
+    },
+    "format": {
+      "cache": true
+    },
+    "lint:fix": {
+      "cache": true
+    },
+    "cf-typegen": {
+      "cache": true
+    }
+  }
+}
