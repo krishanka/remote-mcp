@@ -6,16 +6,13 @@ import { Auth0Handler } from './auth0-handler';
 
 export class MyMCP extends McpAgent {
   server = new McpServer({
-    name: 'remote-mcp',
-    description:
-      'My remote MCP server with OAuth, SSE running on Cloudflare exposing custom tools',
-    version: '1.0.2',
+    name: 'Demo',
+    version: '1.0.0',
   });
 
   async init() {
     this.server.tool(
       'add',
-      'Add two numbers',
       { a: z.number(), b: z.number() },
       async ({ a, b }) => ({
         content: [{ type: 'text', text: String(a + b) }],

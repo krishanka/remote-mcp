@@ -658,7 +658,7 @@ auth0App.get('/callback', async (c) => {
       throw new TokenExchangeError('Failed to exchange token');
     }
 
-    const tokenData = await tokenResponse.json<{ access_token: string }>();
+    const tokenData = (await tokenResponse.json()) as { access_token: string };
     console.log('Successfully obtained access token');
 
     // Fetch user information with the new access token
@@ -681,7 +681,7 @@ auth0App.get('/callback', async (c) => {
       );
     }
 
-    const userData = await userResponse.json<Auth0UserInfo>();
+    const userData = (await userResponse.json()) as Auth0UserInfo;
     console.log('Received user data:', {
       sub: userData.sub ? 'present' : 'missing',
       email: userData.email ? 'present' : 'missing',
